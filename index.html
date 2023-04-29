@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <p>Bienvenido</p>
+        <div data-key="65" class="key">
+            <kbd>A</kbd>
+            <span class="sound">Hi-Hat</span>
+        </div>
+         <div data-key="83" class="key">
+            <kbd>S</kbd>
+            <span class="sound">Snare</span>
+        </div>
+         <div data-key="68" class="key">
+            <kbd>D</kbd>
+            <span class="sound">Redo</span>
+        </div>
+         <div data-key="70" class="key">
+            <kbd>F</kbd>
+            <span class="sound">Crash</span>
+        </div>
+         <div data-key="71" class="key">
+            <kbd>G</kbd>
+            <span class="sound">Ride</span>
+        </div>
+         <div data-key="88" class="key">
+            <kbd>X</kbd>
+            <span class="sound">Kick</span>
+        </div>
+    </div>
+    
+    <audio data-key="65" src="Kit\CYCdh_K6-ClHat.wav"></audio>
+    <audio data-key="83" src="Kit\CYCdh_K6-Snr02.wav"></audio>
+    <audio data-key="68" src="Kit\CYCdh_K6-SnrBuzz.wav"></audio>
+    <audio data-key="70" src="Kit\CYCdh_K6-OpHat02.wav"></audio>
+    <audio data-key="71" src="Kit\CYCdh_K6-OpHat01.wav"></audio>
+    <audio data-key="88" src="Kit\CYCdh_K6-Kick01.wav"></audio>
+
+    <script>
+        window.addEventListener('keydown', function(e){
+           const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`); //busca el audio según la tecla
+           const key = document.querySelector(`.key[data-key="${e.keyCode}"]`); //busca el boton segun la tecla
+           console.log(key);
+           if(!audio) return; // si no hay audio para la tecla, para la función
+           audio.currentTime = 0; //rebobina al principio apenas se produce, para que no espere a terminar para volver a sonar
+           audio.play(); //reproduce el audio
+           key.classList.add('onplay'); //agrega la clase playing a la tecla cuando se apreta
+        });
+
+        function removeTransition(e){ //método para remover la transición
+            if(e.propertyName !== 'transform') return; //saltealo
+       
+           this.classList.remove('onplay');
+        }
+
+        const keys = document.querySelectorAll('.key');
+        keys.forEach(key => key.addEventListener('transitionend', removeTransition));
+    </script>
+    
+</body>
+</html>

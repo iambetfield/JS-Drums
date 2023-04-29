@@ -1,0 +1,29 @@
+body {
+    background-color: #fff2;
+    background-image: url("images/back.jpg");
+    background-size: cover;
+    background-position: center center;
+}
+
+
+
+.key{
+  background-color: #acd8ae; /* color de fondo */
+  color: white; /* color del texto */
+  padding: 10px 20px; /* tamaño del padding (espacio entre el contenido y el borde) */
+  border: none; /* borde */
+  border-radius: 5px; /* radio de la esquina del botón */
+  cursor: pointer; /* cursor al pasar por encima */
+  font-size: 16px; /* tamaño del texto */
+  width: 70px;
+
+  transition: all .1s;
+
+}
+
+.onplay {
+    transform: scale(1.5);
+    background-color: black;
+  
+}
+
